@@ -1,0 +1,22 @@
+0.9b - 08.11.2016 WW
+LICENSING TBD - FREE TO USE
+
+>> wBak - Simple automatic server/system (Linux/BSD/OSX) backups and local browsable archival via ZFS snapshots + external GPG encrypted long term storage <<
+
+This is an extended version of my old backup script, it is based on ZFS snapshots as these are simple accessible to restore - implemented on eg. dm-crypt or other encrypted drive(s) this provides somewhat secure storage.
+
+The actual backup process is a simple rsync of /, then a ZFS snapshot is taken and if configured a GPG encrypted (thus secure to share) file is created & synced local/remote by rsync.
+
+Features:
+- Simple configuration and installation (eg. Ubuntu 16.04 system and ZFS volume + some packages)
+- Supports general excludes as well as single server excludes in server config
+- Allows backup scheduling per server (30 min server A, 5 min server B etc.) with default of 60min (set in general config)
+- rsync is rather reliable
+- ZFS snapshots provide easy access to any data point
+- Incremental backups and can be deduplication enabled (not recommended on ZFS on Linux though)
+- GPG encrypted backups are highly secure and can be shared to anywhere automated (default all 12 hours the latest snapshot), extend script by eg. FTP or Dropbox/whatever...
+
+See INSTALL for configuration.
+
+>> Use with caution: Not the best bash yet and written in one night but i use it production wise and the simplicity should show issues quickly. <<
+>> As usual, no warranty <<

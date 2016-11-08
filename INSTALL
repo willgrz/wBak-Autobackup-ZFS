@@ -1,0 +1,16 @@
+0. Install a Linux system with ZFS (recommended Ubuntu) & generate an SSH key + add it on all systems to be backed up
+1. Create ZFS pool and volume for backup storage
+   - I use eg. as pool:
+   - /pool/backup/server
+2. Install packages required on backup server (TAR+GPG if you want encrypted stored, find/sed/rsync/date/awk/bash)
+3. Change the config path to this path in the bin/autobackup.sh file
+4. Add central excludes to excludes.conf if any
+5. Add servers to be backed up as shown in servers.conf commented example
+   - These need to have rsync installed
+6. Edit autobackup.conf:
+   - Leaving defaults & only changing zpool, bbase and backupdir should get you running on Ubuntu 16.04 with existing ZFS pool safely
+7. Run bash bin/autobackup.sh --full-backup
+   - This enables first run backups and external backups by placing lock files
+8. Run bash -x bin/autobackup.sh
+   - This runs the script in debug mode to see if everything seems ok
+9. Set cronjob to run script all few minutes
